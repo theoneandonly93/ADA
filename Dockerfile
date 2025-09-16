@@ -20,6 +20,7 @@ RUN npm install -g bun@1.2.5 turbo@2.3.3
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 COPY package.json turbo.json tsconfig.json lerna.json renovate.json .npmrc ./
+COPY build-utils.ts ./
 COPY scripts ./scripts
 COPY packages ./packages
 
@@ -44,6 +45,7 @@ RUN apt-get update && \
 RUN npm install -g bun@1.2.5 turbo@2.3.3
 
 COPY --from=builder /app/package.json ./
+COPY --from=builder /app/build-utils.ts ./
 COPY --from=builder /app/turbo.json ./
 COPY --from=builder /app/tsconfig.json ./
 COPY --from=builder /app/lerna.json ./
