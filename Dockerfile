@@ -56,7 +56,9 @@ COPY --from=builder /app/scripts ./scripts
 
 ENV NODE_ENV=production
 
-EXPOSE 3000
-EXPOSE 50000-50100/udp
 
+# Fly.io expects the app to listen on 8080 by default
+EXPOSE 8080
+
+# Start ADA server with Bun
 CMD ["bun", "run", "start"]
